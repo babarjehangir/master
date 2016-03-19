@@ -11,7 +11,7 @@ public class HelloWorldResource extends ServerResource {
 	public Representation represent() {
 
 		return new JacksonRepresentation<HelloMessage>(new HelloMessage(
-				"BABAR - hello, Dexter - With JSON(from the cloud!)"));
+				"BABAR - hello, Dexter - With JSON(from the heroku!)"));
 		// return "Hello Worldd";
 	}
 
