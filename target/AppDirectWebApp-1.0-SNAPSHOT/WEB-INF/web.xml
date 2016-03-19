@@ -3,5 +3,34 @@
  "http://java.sun.com/dtd/web-app_2_3.dtd" >
 
 <web-app>
-  <display-name>Archetype Created Web Application</display-name>
+
+	<display-name>first steps servlet</display-name>
+
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>/WEB-INF/conf/appConfig.xml</param-value>
+	</context-param>
+
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+
+	<servlet>
+		<servlet-name>RestletServlet</servlet-name>
+		<servlet-class>org.restlet.ext.spring.SpringServerServlet</servlet-class>
+		<init-param>
+<!-- 			<param-name>org.restlet.application</param-name> -->
+<!-- 			<param-value>application</param-value> -->
+			<param-name>org.restlet.component</param-name>
+             <!-- this value must match the bean id of the Restlet component you will configure in Spring (below) -->
+            <param-value>restletComponent</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+	<!-- Catch all requests -->
+	<servlet-mapping>
+		<servlet-name>RestletServlet</servlet-name>
+		<url-pattern>/*</url-pattern>
+	</servlet-mapping>
 </web-app>
