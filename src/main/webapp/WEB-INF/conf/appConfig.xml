@@ -25,7 +25,7 @@
 		class="com.dexter.labs.app.direct.notifications.handlers.rest.SubscriptionResource">
 	</bean>
 
-	<bean name="/login/openid_url/{openid_url}" autowire="byName" scope="prototype"
+	<bean name="/login/openid/{openid_url}" autowire="byName" scope="prototype"
 		class="com.dexter.labs.app.direct.notifications.handlers.rest.LoginResource">
 	</bean>
 </beans>
