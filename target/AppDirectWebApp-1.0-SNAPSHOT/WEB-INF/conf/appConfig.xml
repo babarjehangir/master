@@ -5,6 +5,11 @@
 	<!-- our SpringComponent which binds us to the Restlet servlet configured 
 		above -->
 	<bean id="restletComponent" class="org.restlet.ext.spring.SpringComponent">
+	 	<property name="clientsList">
+                 <list>
+                         <value>clap</value>
+                 </list>
+        </property>
 		<!-- the defaultTarget for this component is our Restlet Application -->
 		<property name="defaultTarget" ref="application" />
 	</bean>

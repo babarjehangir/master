@@ -2,6 +2,7 @@ package com.dexter.labs;
 
 import org.restlet.Application;
 import org.restlet.Restlet;
+import org.restlet.resource.Directory;
 import org.restlet.routing.Route;
 import org.restlet.routing.Router;
 
@@ -14,9 +15,17 @@ public class FirstStepsApplication extends Application {
 
 	@Override
 	public Restlet createInboundRoot() {
+
+		Directory directory = new Directory(getContext(),
+				"clap://class/static/");
+		directory.setDeeplyAccessible(true);
+
+		root.attach("/web", directory);
+
 		for (Route route : root.getRoutes()) {
 			System.out.println(route.toString());
 		}
+
 		return root;
 	}
 
