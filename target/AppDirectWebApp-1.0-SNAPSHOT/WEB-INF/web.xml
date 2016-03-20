@@ -27,10 +27,18 @@
 		</init-param>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
-
+	<servlet>
+	    <servlet-name>angularApp</servlet-name>
+	    <jsp-file>/index.html</jsp-file>
+	</servlet>
+	<servlet-mapping>
+	    <servlet-name>angularApp</servlet-name>
+	    <url-pattern>/</url-pattern>
+	</servlet-mapping>
+	
 	<!-- Catch all requests -->
 	<servlet-mapping>
 		<servlet-name>RestletServlet</servlet-name>
-		<url-pattern>/*</url-pattern>
+		<url-pattern>/rest/*</url-pattern>
 	</servlet-mapping>
 </web-app>
