@@ -2,46 +2,6 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans  http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
-	<!-- http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd"> -->
-
-	<!-- xmlns:tx="http://www.springframework.org/schema/tx"-->
-<!-- 	<bean id="dataSource" -->
-<!-- 		class="org.springframework.jdbc.datasource.DriverManagerDataSource"> -->
-<!-- 		<property name="driverClassName" value="com.mysql.jdbc.Driver" /> -->
-<!-- 		<property name="url" -->
-<!-- 			value="jdbc:mysql://173.194.236.230:3306/collegebookdb" /> -->
-<!-- 		<property name="username" value="kampusland" /> -->
-<!-- 		<property name="password" value="99kampusland88" /> -->
-<!-- 	</bean> -->
-	
-<!-- 	<bean id="dataSource" -->
-<!-- 		class="org.springframework.jdbc.datasource.DriverManagerDataSource"> -->
-<!-- 		<property name="driverClassName" value="com.mysql.jdbc.GoogleDriver" /> -->
-<!-- 		<property name="url" -->
-<!-- 			value="jdbc:google:mysql://kampusland-mobile:kampusland-sql-instance/collegebookdb" /> -->
-<!-- 		<property name="username" value="kampusland" /> -->
-<!-- 		<property name="password" value="99kampusland88" /> -->
-<!-- 	</bean> -->
-<!-- 	<bean id="commonMainDataSource" class="org.springframework.jdbc.core.JdbcTemplate"> -->
-<!-- 		<constructor-arg ref="dataSource" /> -->
-<!-- 	</bean> -->
-<!-- 		<bean id="commonNamedMainDataSource" class="org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate"> -->
-<!-- 		<constructor-arg ref="dataSource" /> -->
-<!-- 	</bean> -->
-    <!-- Enable Annotation based Declarative Transaction Management -->
-<!--     <tx:annotation-driven proxy-target-class="true" -->
-<!--         transaction-manager="transactionManager" /> -->
- 
-    <!-- Creating TransactionManager Bean, since JDBC we are creating of type 
-        DataSourceTransactionManager -->
-<!--     <bean id="transactionManager" -->
-<!--         class="org.springframework.jdbc.datasource.DataSourceTransactionManager"> -->
-<!--         <property name="dataSource" ref="dataSource" /> -->
-<!--     </bean> -->
-<!-- 	<bean id="userDAO" class="com.dexter.labs.kampusland.dao.impl.UserDAO"> -->
-<!-- 		<property name="jdbcTemplate" ref="commonMainDataSource" /> -->
-<!-- 		<property name="namedParameterJdbcTemplate" ref="commonNamedMainDataSource" /> -->
-<!-- 	</bean> -->
 	<!-- our SpringComponent which binds us to the Restlet servlet configured 
 		above -->
 	<bean id="restletComponent" class="org.restlet.ext.spring.SpringComponent">
@@ -60,5 +20,12 @@
 	<bean name="/user/" autowire="byName" scope="prototype"
 		class="com.dexter.labs.HelloWorldResource">
 	</bean>
+	
+	<bean name="/subscription/create/notification/" autowire="byName" scope="prototype"
+		class="com.dexter.labs.app.direct.notifications.handlers.rest.SubscriptionResource">
+	</bean>
 
+	<bean name="/login/openid_url/{openid_url}" autowire="byName" scope="prototype"
+		class="com.dexter.labs.app.direct.notifications.handlers.rest.LoginResource">
+	</bean>
 </beans>
