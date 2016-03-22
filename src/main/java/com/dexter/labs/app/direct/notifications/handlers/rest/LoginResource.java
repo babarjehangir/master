@@ -50,7 +50,7 @@ public class LoginResource extends ServerResource {
 					responseHeaders);
 		}
 		responseHeaders.add(new Header("Access-Control-Allow-Origin", "*"));
-		getResponse().redirectSeeOther("http://google.com");
+		getResponse().redirectSeeOther("https://www.google.com");
 		return new JacksonRepresentation<HelloMessage>(new HelloMessage(
 				(discoveryInfo != null ? "DISCOVERED"
 						+ discoveryInfo.toString() + "DESTINATION URL "
