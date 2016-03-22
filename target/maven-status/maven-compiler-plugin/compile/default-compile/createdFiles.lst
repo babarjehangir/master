@@ -1,12 +1,12 @@
 com\dexter\labs\filters\Blocker.class
-com\dexter\labs\college\book\rest\RootResource.class
 com\dexter\labs\app\direct\openid\RegistrationService.class
 com\dexter\labs\app\direct\notifications\handlers\rest\LoginResource.class
+com\dexter\labs\app\direct\notifications\handlers\rest\SubscriptionResource.class
+com\dexter\labs\HelloMessage.class
+com\dexter\labs\HelloWorldResource.class
+com\dexter\labs\college\book\rest\RootResource.class
 com\dexter\labs\FirstStepsApplication.class
 com\dexter\labs\filters\helper\Tracer.class
-com\dexter\labs\app\direct\notifications\handlers\rest\SubscriptionResource.class
 com\dexter\labs\college\book\rest\RootServerResource.class
-com\dexter\labs\HelloMessage.class
 com\dexter\labs\app\direct\common\IConstants.class
 com\dexter\labs\TestFile.class
-com\dexter\labs\HelloWorldResource.class

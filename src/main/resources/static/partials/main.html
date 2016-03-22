@@ -1,7 +1,20 @@
+<form>
+  <fieldset>
+    <legend>Login</legend>
+    <label>open id</label>
+    <input type="text" placeholder="Type something…">
+    <button type="submit" class="btn">Submit</button>
+  </fieldset>
+</form>
 
-<div>{{message}}</div>
-Edit the new main.html and add the code shown here:
-Edit show.html and add the code shown here:
-<!-- chapter2/show.html -->
+<form ng-submit="submit()" ng-controller="loginController">
 
-<div>{{message}}</div>
+  <div>
+    <input type="text" ng-model="cOpenId" required/>
+  </div>
+
+  <div>
+    <button type="submit" >Login</button>
+  </div>
+
+</form>

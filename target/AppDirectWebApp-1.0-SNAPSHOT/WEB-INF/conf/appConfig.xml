@@ -33,4 +33,8 @@
 	<bean name="/login/openid/{openid_url}" autowire="byName" scope="prototype"
 		class="com.dexter.labs.app.direct.notifications.handlers.rest.LoginResource">
 	</bean>
+	
+		<bean name="/login/validate/openid" autowire="byName" scope="prototype"
+		class="com.dexter.labs.app.direct.notifications.handlers.rest.ValidationCompleteResource">
+	</bean>
 </beans>
