@@ -15,7 +15,7 @@ function($resource) {
 movieReservationServices.factory('LoginService', function($http) {
 	    return {
 	      getLogin: function(id) {
-	         return $http.get('http://localhost:8080/login/openid/' + id);
+	         return $http.get('https://boiling-eyrie-13823.herokuapp.com/login/openid/' + id);
 	      }
 	    }
 	  });
