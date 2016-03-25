@@ -55,6 +55,10 @@ public class ValidationCompleteResource extends ServerResource {
 					.println(parameter.getName() + ":" + parameter.getValue());
 		}
 
+		if (getReferrerRef() != null) {
+			System.out.println("REFERRER: " + getReferrerRef().toString());
+		}
+
 		ParameterList params = new ParameterList(queryParams);
 
 		try {
@@ -70,6 +74,8 @@ public class ValidationCompleteResource extends ServerResource {
 			if (verifiedId != null) {
 				String openIdReturned = getQueryValue("openid.identity");
 				System.out.println("VERIFIED USER: " + openIdReturned);
+			} else {
+				System.out.println("USER NOT VERIFIED");
 			}
 
 		} catch (Exception e) {
