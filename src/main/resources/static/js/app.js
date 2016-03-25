@@ -7,8 +7,8 @@ var movieReservationApp = angular.module('movieReservationApp', [
   'movieReservationServices'
 ]);
 
-movieReservationApp.config(['$routeProvider', '$locationProvider',
-function($routeProvider, $locationProvider) {
+movieReservationApp.config(['$routeProvider', '$locationProvider','$httpProvider',
+function($routeProvider, $locationProvider, $httpProvider) {
   $routeProvider.
     when('/', {
     templateUrl: 'partials/main.html',
@@ -18,12 +18,7 @@ function($routeProvider, $locationProvider) {
     controller: 'loginController'
 });
 
-
+ $httpProvider.defaults.useXDomain = true;
+ $httpProvider.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
 $locationProvider.html5Mode(false).hashPrefix('!');
 }]); 
-
-movieReservationApp.config(['$httpProvider', function($httpProvider) {
-    $httpProvider.defaults.useXDomain = true;
-    delete $httpProvider.defaults.headers.common['X-Requested-With'];
-}
-]);

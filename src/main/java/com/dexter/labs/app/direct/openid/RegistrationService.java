@@ -2,21 +2,14 @@ package com.dexter.labs.app.direct.openid;
 
 import java.util.List;
 
-import org.openid4java.consumer.ConsumerException;
 import org.openid4java.consumer.ConsumerManager;
 import org.openid4java.consumer.InMemoryConsumerAssociationStore;
 import org.openid4java.consumer.InMemoryNonceVerifier;
-import org.openid4java.consumer.VerificationResult;
 import org.openid4java.discovery.DiscoveryException;
 import org.openid4java.discovery.DiscoveryInformation;
-import org.openid4java.discovery.Identifier;
 import org.openid4java.message.AuthRequest;
-import org.openid4java.message.AuthSuccess;
-import org.openid4java.message.MessageExtension;
 import org.openid4java.message.ParameterList;
-import org.openid4java.message.sreg.SRegMessage;
 import org.openid4java.message.sreg.SRegRequest;
-import org.openid4java.message.sreg.SRegResponse;
 
 /**
  * Consolidates business logic from the UI code for Registration activities.
@@ -148,35 +141,18 @@ public class RegistrationService {
 	 *         returned, make sure your Default profile is completely filled
 	 *         out.
 	 */
-	/*
-	 * public static RegistrationModel processReturn( DiscoveryInformation
-	 * discoveryInformation, PageParameters pageParameters, String returnToUrl)
-	 * { // RegistrationModel ret = null; // Verify the Information returned
-	 * from the OP // / This is required according to the spec ParameterList
-	 * response = new ParameterList(pageParameters); try { VerificationResult
-	 * verificationResult = getConsumerManager() .verify(returnToUrl, response,
-	 * discoveryInformation); Identifier verifiedIdentifier =
-	 * verificationResult.getVerifiedId(); if (verifiedIdentifier != null) {
-	 * AuthSuccess authSuccess = (AuthSuccess) verificationResult
-	 * .getAuthResponse(); if
-	 * (authSuccess.hasExtension(SRegMessage.OPENID_NS_SREG)) { MessageExtension
-	 * extension = authSuccess .getExtension(SRegMessage.OPENID_NS_SREG); if
-	 * (extension instanceof SRegResponse) { // ret = new RegistrationModel();
-	 * // ret.setOpenId(verifiedIdentifier.getIdentifier()); SRegResponse
-	 * sRegResponse = (SRegResponse) extension; String value =
-	 * sRegResponse.getAttributeValue("dob"); if (value != null) { //
-	 * ret.setDateOfBirth(new // YearMonthDay(value).toDateMidnight().toDate());
-	 * } value = sRegResponse.getAttributeValue("email"); if (value != null) {
-	 * // ret.setEmailAddress(value); } value =
-	 * sRegResponse.getAttributeValue("fullname"); if (value != null) { //
-	 * ret.setFullName(value); } value =
-	 * sRegResponse.getAttributeValue("postcode"); if (value != null) { //
-	 * ret.setZipCode(value); } } } } } catch (Exception e) { String message =
-	 * "Exception occurred while verifying response!"; // log.error(message, e);
-	 * throw new RuntimeException(message, e); } return ret; }
-	 */
+	public static void processReturn(DiscoveryInformation discoveryInformation,
+			ParameterList parameters, String returnToUrl) {
 
-	private static ConsumerManager consumerManager;
+		try {
+
+		} catch (Exception e) {
+			String message = "Exception occurred while verifying response!";
+			throw new RuntimeException(message, e);
+		}
+	}
+
+	public static ConsumerManager consumerManager;
 
 	/**
 	 * Retrieves an instance of the ConsumerManager object. It is static (see
