@@ -27,10 +27,20 @@ public class LoginResource extends ServerResource {
 
 		String openid = "https://me.yahoo.com";// getOpenIdUrl();
 
-		DiscoveryInformation discoveryInfo = RegistrationService
-				.performDiscoveryOnUserSuppliedIdentifier(openid);
+		DiscoveryInformation discoveryInfo = null;
 
-		IGlobals.disInfoMap.put(openid, discoveryInfo);
+		if (IGlobals.disInfoMap.containsKey(openid)) {
+			discoveryInfo = IGlobals.disInfoMap.get(openid);
+		} else {
+			discoveryInfo = RegistrationService
+					.performDiscoveryOnUserSuppliedIdentifier(openid);
+		}
+
+		if (discoveryInfo != null) {
+			IGlobals.disInfoMap.put(openid, discoveryInfo);
+		} else {
+			// raise an exception
+		}
 
 		AuthRequest authRequest = RegistrationService.createOpenIdAuthRequest(
 				discoveryInfo, IGlobals.VALIDATION_RETURN_URL);
