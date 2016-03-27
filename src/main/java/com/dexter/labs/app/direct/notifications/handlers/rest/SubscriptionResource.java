@@ -65,7 +65,7 @@ public class SubscriptionResource extends ServerResource {
 		EventType eventType = (EventType) unmarshaller.unmarshal(reader);
 
 		if (eventType != null) {
-			System.out.println("TYPE OF EVENT: " + eventType);
+			System.out.println("TYPE OF EVENT: " + eventType.getType());
 		}
 
 		return new JacksonRepresentation<HelloMessage>(new HelloMessage(
