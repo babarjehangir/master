@@ -3,6 +3,8 @@
  */
 package com.dexter.labs.app.direct.notifications.handlers.rest;
 
+import java.io.IOException;
+
 import org.restlet.Client;
 import org.restlet.data.ChallengeResponse;
 import org.restlet.data.ChallengeScheme;
@@ -25,7 +27,7 @@ import com.dexter.labs.communication.AppDirectSubscriptionResponse;
 public class SubscriptionResource extends ServerResource {
 
 	@Get("json")
-	public Representation represent() {
+	public Representation represent() throws IOException {
 
 		String url = getQueryValue("url");
 
@@ -46,7 +48,9 @@ public class SubscriptionResource extends ServerResource {
 		clientResource.setNext(client);
 		// clientResource.setChallengeResponse(challenge);
 
-		clientResource.get();
+		Representation res = clientResource.get();
+
+		System.out.println("RESPONSE:" + res.getText());
 
 		return new JacksonRepresentation<AppDirectSubscriptionResponse>(
 				new AppDirectSubscriptionResponse());
