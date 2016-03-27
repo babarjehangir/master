@@ -4,70 +4,38 @@
 package com.dexter.labs.app.direct.notifications.handlers.rest;
 
 import java.io.IOException;
-import java.io.StringReader;
 
-import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
-import javax.xml.bind.Unmarshaller;
 
-import org.restlet.Client;
-import org.restlet.data.ChallengeResponse;
-import org.restlet.data.ChallengeScheme;
-import org.restlet.data.Form;
-import org.restlet.data.Parameter;
-import org.restlet.data.Protocol;
-import org.restlet.ext.jaxb.JaxbRepresentation;
 import org.restlet.representation.Representation;
-import org.restlet.resource.ClientResource;
 import org.restlet.resource.Get;
-import org.restlet.resource.ServerResource;
 
 import com.dexter.labs.app.direct.common.IGlobals;
 import com.dexter.labs.communication.EventType;
+import com.mysql.jdbc.StringUtils;
 
 /**
  * @author Babar Jehangir Khan
  *
  */
-public class SubscriptionResource extends ServerResource {
+public class SubscriptionResource extends AbstractSubscriptionResource {
 
 	@Get("json")
 	public Representation represent() throws IOException, JAXBException {
 
-		String url = getQueryValue("url");
+		String url = getQueryValue(IGlobals.EVENT_URL);
 
-		Form form = getRequest().getResourceRef().getQueryAsForm();
-
-		for (Parameter parameter : form) {
-			System.out
-					.println(parameter.getName() + ":" + parameter.getValue());
+		if (StringUtils.isNullOrEmpty(url)) {
+			// cannot continue without the a valid Event URL provided.
+			return badRequest();
 		}
-		System.out.println("TEST URL BY APP DIRECT: " + url);
 
-		ChallengeResponse challenge = new ChallengeResponse(
-				ChallengeScheme.HTTP_OAUTH, IGlobals.appDirectKey,
-				IGlobals.appDirectSecret);
-
-		Client client = new Client(getContext(), Protocol.HTTPS);
-		ClientResource clientResource = new ClientResource(url);
-		clientResource.setNext(client);
-		clientResource.setChallengeResponse(challenge);
-
-		Representation res = clientResource.get();
-
-		StringReader reader = new StringReader(res.getText());
-		System.out.println("RESPONSE:" + res.getText());
-
-		JAXBContext context = JAXBContext.newInstance(EventType.class);
-		Unmarshaller unmarshaller = context.createUnmarshaller();
-
-		EventType eventType = (EventType) unmarshaller.unmarshal(reader);
+		EventType eventType = extractEventType(url);
 
 		if (eventType != null) {
 			System.out.println("TYPE OF EVENT: " + eventType.getType());
 		}
 
-		return new JaxbRepresentation<EventType>(eventType);
-
+		return userAlreadyExists();
 	}
 }

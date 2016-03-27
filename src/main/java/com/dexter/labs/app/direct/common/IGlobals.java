@@ -11,6 +11,8 @@ public interface IGlobals {
 
 	public static String OPEN_ID_URL = "openid_url";
 
+	public static String EVENT_URL = "url";
+
 	public static String appDirectKey = "movie-reservation-96332"; // TODO:
 																	// should
 																	// really be

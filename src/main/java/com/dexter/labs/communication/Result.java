@@ -13,6 +13,8 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
+import com.dexter.labs.app.direct.common.types.EErrorCodes;
+
 /**
  * <p>
  * Java class for anonymous complex type.
@@ -131,4 +133,15 @@ public class Result {
 		this.accountIdentifier = value;
 	}
 
+	public static Result buildResult(EErrorCodes errorCode, String message,
+			boolean success) {
+		Result result = new Result();
+
+		if (errorCode != null)
+			result.setErrorCode(errorCode.name());
+		result.setMessage(message);
+		result.setSuccess(success);
+
+		return result;
+	}
 }
