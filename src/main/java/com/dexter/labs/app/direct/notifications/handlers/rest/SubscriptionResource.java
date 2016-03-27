@@ -46,10 +46,10 @@ public class SubscriptionResource extends ServerResource {
 		clientResource.setNext(client);
 		// clientResource.setChallengeResponse(challenge);
 
-		JacksonRepresentation<AppDirectSubscriptionResponse> response = (JacksonRepresentation<AppDirectSubscriptionResponse>) clientResource
-				.get();
+		clientResource.get();
 
-		return response;
+		return new JacksonRepresentation<AppDirectSubscriptionResponse>(
+				new AppDirectSubscriptionResponse());
 		// return "Hello Worldd";
 	}
 }
