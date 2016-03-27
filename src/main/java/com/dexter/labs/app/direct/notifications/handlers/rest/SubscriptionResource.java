@@ -16,7 +16,7 @@ import org.restlet.data.ChallengeScheme;
 import org.restlet.data.Form;
 import org.restlet.data.Parameter;
 import org.restlet.data.Protocol;
-import org.restlet.ext.jackson.JacksonRepresentation;
+import org.restlet.ext.jaxb.JaxbRepresentation;
 import org.restlet.representation.Representation;
 import org.restlet.resource.ClientResource;
 import org.restlet.resource.Get;
@@ -24,7 +24,6 @@ import org.restlet.resource.ServerResource;
 
 import com.dexter.labs.app.direct.common.IGlobals;
 import com.dexter.labs.communication.EventType;
-import com.dexter.labs.communication.HelloMessage;
 
 /**
  * @author Babar Jehangir Khan
@@ -68,8 +67,7 @@ public class SubscriptionResource extends ServerResource {
 			System.out.println("TYPE OF EVENT: " + eventType.getType());
 		}
 
-		return new JacksonRepresentation<HelloMessage>(new HelloMessage(
-				"Hello World"));
-		// return "Hello Worldd";
+		return new JaxbRepresentation<EventType>(eventType);
+
 	}
 }
