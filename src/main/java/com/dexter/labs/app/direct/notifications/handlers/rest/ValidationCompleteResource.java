@@ -81,6 +81,8 @@ public class ValidationCompleteResource extends ServerResource {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+
+		getResponse().redirectSeeOther("/web/index.html#!/home");
 		return new JacksonRepresentation<HelloMessage>(
 				new HelloMessage("App Direct Subscription Handler!) openId:"
 						+ openId + "accountId:" + accountId + " claimedId: "

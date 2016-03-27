@@ -16,6 +16,8 @@ function($routeProvider, $locationProvider, $httpProvider) {
   }).when('/login', {
     templateUrl: 'partials/login.html',
     controller: 'loginController'
+}).when('/home', {
+    templateUrl: 'partials/home.html'
 });
 
  $httpProvider.defaults.useXDomain = true;

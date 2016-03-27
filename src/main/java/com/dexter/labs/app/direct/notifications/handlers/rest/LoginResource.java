@@ -3,6 +3,8 @@
  */
 package com.dexter.labs.app.direct.notifications.handlers.rest;
 
+import java.net.URLDecoder;
+
 import org.openid4java.discovery.DiscoveryInformation;
 import org.openid4java.message.AuthRequest;
 import org.restlet.ext.jackson.JacksonRepresentation;
@@ -25,7 +27,8 @@ public class LoginResource extends ServerResource {
 	@Get("json")
 	public Representation represent() {
 
-		String openid = "https://me.yahoo.com";// getOpenIdUrl();
+		String openid = getOpenIdUrl();// "https://me.yahoo.com";//
+										// getOpenIdUrl();
 
 		DiscoveryInformation discoveryInfo = null;
 
@@ -51,6 +54,6 @@ public class LoginResource extends ServerResource {
 	}
 
 	private String getOpenIdUrl() {
-		return this.getAttribute(IGlobals.OPEN_ID_URL);
+		return URLDecoder.decode(this.getAttribute(IGlobals.OPEN_ID_URL));
 	}
 }

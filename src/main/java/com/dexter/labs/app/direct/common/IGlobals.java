@@ -11,8 +11,21 @@ public interface IGlobals {
 
 	public static String OPEN_ID_URL = "openid_url";
 
-	public static String VALIDATION_RETURN_URL = "http://boiling-eyrie-13823.herokuapp.com/login/validate/openid";
+	public static String appDirectKey = "movie-reservation-96332"; // TODO:
+																	// should
+																	// really be
+																	// in a
+																	// configuration
+																	// file.
+
+	public static String appDirectSecret = "GRkzuCdYDsG1VUFY"; // TODO: should
+																// really be in
+																// a
+																// configuration
+																// file.
 
 	// public static String VALIDATION_RETURN_URL =
-	// "http://localhost:8080/login/validate/openid";
+	// "http://boiling-eyrie-13823.herokuapp.com/login/validate/openid";
+
+	public static String VALIDATION_RETURN_URL = "http://localhost:8080/login/validate/openid";
 }

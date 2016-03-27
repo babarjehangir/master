@@ -17,8 +17,8 @@ movieReservationControllers.controller('loginController',
 			  $scope.login = function(){
 				  console.log("Iam here");
 			    var openId = $scope.cOpenId;
-			  
-			    LoginService.getLogin(openId).then(function mySucces(response) {
+			    console.log("encoded URL:" + encodeURIComponent(openId));
+			    LoginService.getLogin(encodeURIComponent(openId)).then(function mySucces(response) {
 			    	console.log("service called " + response.data.redirectURL);
 			    	$window.location.href = response.data.redirectURL ;
 			    }, function myError(response) {
