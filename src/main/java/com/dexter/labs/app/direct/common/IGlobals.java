@@ -27,5 +27,5 @@ public interface IGlobals {
 	// public static String VALIDATION_RETURN_URL =
 	// "http://boiling-eyrie-13823.herokuapp.com/login/validate/openid";
 
-	public static String VALIDATION_RETURN_URL = "http://localhost:8080/login/validate/openid";
+	public static String VALIDATION_RETURN_URL = "http://boiling-eyrie-13823.herokuapp.com/login/validate/openid";
 }

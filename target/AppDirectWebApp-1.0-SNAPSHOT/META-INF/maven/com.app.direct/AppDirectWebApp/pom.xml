@@ -21,6 +21,17 @@
 	</repositories>
 	<dependencies>
 		<dependency>
+			<groupId>oauth.signpost</groupId>
+			<artifactId>signpost-core</artifactId>
+			<version>1.2.1.2</version>
+		</dependency>
+		<dependency>
+			<groupId>oauth.signpost</groupId>
+			<artifactId>signpost-commonshttp4</artifactId>
+			<version>1.2</version>
+		</dependency>
+		
+		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>3.8.1</version>
@@ -95,11 +106,6 @@
 		    <groupId>org.openid4java</groupId>
 		    <artifactId>openid4java</artifactId>
 		    <version>1.0.0</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.commons</groupId>
-			<artifactId>commons-lang3</artifactId>
-			<version>3.3.2</version>
 		</dependency>
 	</dependencies>
   <build>
