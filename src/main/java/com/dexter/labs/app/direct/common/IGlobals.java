@@ -18,11 +18,7 @@ public interface IGlobals {
 																	// configuration
 																	// file.
 
-	public static String appDirectSecret = "GRkzuCdYDsG1VUFY"; // TODO: should
-																// really be in
-																// a
-																// configuration
-																// file.
+	public static String appDirectSecret = "GRkzuCdYDsG1VUFY";
 
 	// public static String VALIDATION_RETURN_URL =
 	// "http://boiling-eyrie-13823.herokuapp.com/login/validate/openid";
