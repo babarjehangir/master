@@ -41,7 +41,7 @@ public class SubscriptionResource extends ServerResource {
 				ChallengeScheme.HTTP_OAUTH, IGlobals.appDirectKey,
 				IGlobals.appDirectSecret);
 
-		Client client = new Client(getContext(), Protocol.HTTP);
+		Client client = new Client(getContext(), Protocol.HTTPS);
 		ClientResource clientResource = new ClientResource(url);
 		clientResource.setNext(client);
 		// clientResource.setChallengeResponse(challenge);
