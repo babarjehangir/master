@@ -56,13 +56,13 @@ public class SubscriptionResource extends ServerResource {
 
 		Representation res = clientResource.get();
 
+		StringReader reader = new StringReader(res.getText());
 		System.out.println("RESPONSE:" + res.getText());
 
 		JAXBContext context = JAXBContext.newInstance(EventType.class);
 		Unmarshaller unmarshaller = context.createUnmarshaller();
 
-		EventType eventType = (EventType) unmarshaller
-				.unmarshal(new StringReader(res.getText()));
+		EventType eventType = (EventType) unmarshaller.unmarshal(reader);
 
 		if (eventType != null) {
 			System.out.println("TYPE OF EVENT: " + eventType);
