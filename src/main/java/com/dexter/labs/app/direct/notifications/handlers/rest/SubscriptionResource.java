@@ -44,7 +44,7 @@ public class SubscriptionResource extends ServerResource {
 		Client client = new Client(getContext(), Protocol.HTTP);
 		ClientResource clientResource = new ClientResource(url);
 		clientResource.setNext(client);
-		clientResource.setChallengeResponse(challenge);
+		// clientResource.setChallengeResponse(challenge);
 
 		JacksonRepresentation<AppDirectSubscriptionResponse> response = (JacksonRepresentation<AppDirectSubscriptionResponse>) clientResource
 				.get();
