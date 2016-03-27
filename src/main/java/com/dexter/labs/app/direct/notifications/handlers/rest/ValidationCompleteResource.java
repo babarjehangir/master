@@ -17,9 +17,9 @@ import org.restlet.representation.Representation;
 import org.restlet.resource.Get;
 import org.restlet.resource.ServerResource;
 
-import com.dexter.labs.HelloMessage;
 import com.dexter.labs.app.direct.common.IGlobals;
 import com.dexter.labs.app.direct.openid.RegistrationService;
+import com.dexter.labs.communication.HelloMessage;
 
 /**
  * @author Babar Jehangir Khan

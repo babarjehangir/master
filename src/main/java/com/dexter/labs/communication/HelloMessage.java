@@ -1,4 +1,4 @@
-package com.dexter.labs;
+package com.dexter.labs.communication;
 
 public class HelloMessage {
 

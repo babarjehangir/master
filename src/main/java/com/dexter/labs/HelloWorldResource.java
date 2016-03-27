@@ -5,6 +5,8 @@ import org.restlet.representation.Representation;
 import org.restlet.resource.Get;
 import org.restlet.resource.ServerResource;
 
+import com.dexter.labs.communication.HelloMessage;
+
 public class HelloWorldResource extends ServerResource {
 
 	@Get("json")

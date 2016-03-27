@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.StringReader;
 
 import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 
 import org.restlet.Client;
@@ -21,10 +22,9 @@ import org.restlet.resource.ClientResource;
 import org.restlet.resource.Get;
 import org.restlet.resource.ServerResource;
 
-import com.dexter.labs.HelloMessage;
 import com.dexter.labs.app.direct.common.IGlobals;
-import com.dexter.labs.communication.AppDirectSubscriptionResponse;
 import com.dexter.labs.communication.EventType;
+import com.dexter.labs.communication.HelloMessage;
 
 /**
  * @author Babar Jehangir Khan
@@ -33,7 +33,7 @@ import com.dexter.labs.communication.EventType;
 public class SubscriptionResource extends ServerResource {
 
 	@Get("json")
-	public Representation represent() throws IOException {
+	public Representation represent() throws IOException, JAXBException {
 
 		String url = getQueryValue("url");
 
