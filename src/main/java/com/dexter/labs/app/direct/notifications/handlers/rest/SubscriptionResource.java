@@ -4,6 +4,7 @@
 package com.dexter.labs.app.direct.notifications.handlers.rest;
 
 import org.restlet.Client;
+import org.restlet.data.ChallengeRequest;
 import org.restlet.data.ChallengeResponse;
 import org.restlet.data.ChallengeScheme;
 import org.restlet.data.Form;
@@ -38,6 +39,13 @@ public class SubscriptionResource extends ServerResource {
 					.println(parameter.getName() + ":" + parameter.getValue());
 		}
 		System.out.println("TEST URL BY APP DIRECT: " + url);
+
+		ChallengeResponse challenge = new ChallengeResponse(
+				ChallengeScheme.HTTP_OAUTH, IGlobals.appDirectKey,
+				IGlobals.appDirectSecret);
+		for (ChallengeRequest request : getResponse().getChallengeRequests()) {
+			System.out.println("CHALLENGE FOUND: " + request.toString());
+		}
 
 		/*
 		 * ChallengeResponse challenge = new ChallengeResponse(
