@@ -37,11 +37,11 @@ public class SubscriptionResource extends AbstractSubscriptionResource {
 
 		EventType eventType = extractEventType(url);
 
-		Optional<UserType> user = dao.getUser(eventType.getCreator());
-		if (user.isPresent()) {
+		UserType user = dao.getUser(eventType.getCreator());
+		if (user != null) {
 			return userAlreadyExists();
 		} else {
-			dao.addUser(user.get());
+			dao.addUser(user);
 			return userCreated();
 		}
 

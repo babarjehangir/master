@@ -3,8 +3,6 @@
  */
 package com.dexter.labs.data;
 
-import java.util.Optional;
-
 import com.dexter.labs.communication.OrderType;
 import com.dexter.labs.communication.UserType;
 
@@ -18,7 +16,7 @@ import com.dexter.labs.communication.UserType;
 public class Dao implements IDao {
 
 	@Override
-	public Optional<UserType> getUser(UserType userType) {
+	public UserType getUser(UserType userType) {
 		// TODO Auto-generated method stub
 		return null;
 	}

@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
 import com.dexter.labs.communication.OrderType;
 import com.dexter.labs.communication.UserType;
@@ -25,11 +24,14 @@ public class DaoTest implements IDao {
 
 	public static Map<UserType, OrderType> orderTypesMap = new HashMap<UserType, OrderType>();
 
-	public Optional<UserType> getUser(UserType userType) {
+	public UserType getUser(UserType userType) {
 
-		Optional<UserType> returnedUser = userTypes.stream()
-				.filter(a -> a.getUuid() == userType.getUuid()).findFirst();
-		return returnedUser;
+		for (UserType u : userTypes) {
+			if (userType.getUuid().equals(u.getUuid())) {
+				return u;
+			}
+		}
+		return null;
 	}
 
 	public int addUser(UserType userType) {
