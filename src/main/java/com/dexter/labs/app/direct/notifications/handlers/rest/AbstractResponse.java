@@ -32,4 +32,10 @@ public class AbstractResponse extends ServerResource {
 				EErrorCodes.UNAUTHORIZED, "invalid request", Boolean.FALSE));
 	}
 
+	protected Representation unknownErrorOccurred() {
+		return new JaxbRepresentation<Result>(Result.buildResult(
+				EErrorCodes.UNKNOWN_ERROR, "an unknown error has happened",
+				Boolean.FALSE));
+	}
+
 }

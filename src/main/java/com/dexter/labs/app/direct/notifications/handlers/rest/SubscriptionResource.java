@@ -4,6 +4,7 @@
 package com.dexter.labs.app.direct.notifications.handlers.rest;
 
 import java.io.IOException;
+import java.util.Optional;
 
 import javax.xml.bind.JAXBException;
 
@@ -12,6 +13,8 @@ import org.restlet.resource.Get;
 
 import com.dexter.labs.app.direct.common.IGlobals;
 import com.dexter.labs.communication.EventType;
+import com.dexter.labs.communication.UserType;
+import com.dexter.labs.data.IDao;
 import com.mysql.jdbc.StringUtils;
 
 /**
@@ -19,6 +22,8 @@ import com.mysql.jdbc.StringUtils;
  *
  */
 public class SubscriptionResource extends AbstractSubscriptionResource {
+
+	private IDao dao;
 
 	@Get("json")
 	public Representation represent() throws IOException, JAXBException {
@@ -32,10 +37,21 @@ public class SubscriptionResource extends AbstractSubscriptionResource {
 
 		EventType eventType = extractEventType(url);
 
-		if (eventType != null) {
-			System.out.println("TYPE OF EVENT: " + eventType.getType());
+		Optional<UserType> user = dao.getUser(eventType.getCreator());
+		if (user.isPresent()) {
+			return userAlreadyExists();
+		} else {
+			dao.addUser(user.get());
+			return userCreated();
 		}
 
-		return userAlreadyExists();
+	}
+
+	public IDao getDao() {
+		return dao;
+	}
+
+	public void setDao(IDao dao) {
+		this.dao = dao;
 	}
 }

@@ -17,6 +17,10 @@
 	<bean id="application" class="com.dexter.labs.FirstStepsApplication">
 		<property name="root" ref="router" />
 	</bean>
+	
+	<!-- DAO , for now only implementing the test, should really be connected to DB. -->
+	<bean id="commonDAO" class="com.dexter.labs.data.DaoTest"/>
+	
 	<!-- This router automagically routes requests to beans that extend org.restlet.resource.ServerResource 
 		or org.restlet.Restlet who's name starts with a "/" slash which matches the 
 		request -->
@@ -28,6 +32,7 @@
 	
 	<bean name="/subscription/create/notification" autowire="byName" scope="prototype"
 		class="com.dexter.labs.app.direct.notifications.handlers.rest.SubscriptionResource">
+		<property name="dao" ref="commonDAO"/>
 	</bean>
 
 	<bean name="/login/openid/{openid_url}" autowire="byName" scope="prototype"
