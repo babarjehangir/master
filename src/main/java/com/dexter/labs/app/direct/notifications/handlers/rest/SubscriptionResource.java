@@ -30,19 +30,23 @@ public class SubscriptionResource extends ServerResource {
 		String url = getQueryValue("url");
 
 		System.out.println("TEST URL BY APP DIRECT: " + url);
-		ChallengeResponse challenge = new ChallengeResponse(
-				ChallengeScheme.HTTP_OAUTH, IGlobals.appDirectKey,
-				IGlobals.appDirectSecret);
 
-		Client client = new Client(getContext(), Protocol.HTTP);
-		ClientResource clientResource = new ClientResource(url);
-		clientResource.setNext(client);
-		clientResource.setChallengeResponse(challenge);
-
-		JacksonRepresentation<AppDirectSubscriptionResponse> response = (JacksonRepresentation<AppDirectSubscriptionResponse>) clientResource
-				.get();
-
-		return response;
+		/*
+		 * ChallengeResponse challenge = new ChallengeResponse(
+		 * ChallengeScheme.HTTP_OAUTH, IGlobals.appDirectKey,
+		 * IGlobals.appDirectSecret);
+		 * 
+		 * Client client = new Client(getContext(), Protocol.HTTP);
+		 * ClientResource clientResource = new ClientResource(url);
+		 * clientResource.setNext(client);
+		 * clientResource.setChallengeResponse(challenge);
+		 * 
+		 * JacksonRepresentation<AppDirectSubscriptionResponse> response =
+		 * (JacksonRepresentation<AppDirectSubscriptionResponse>) clientResource
+		 * .get();
+		 */
+		return new JacksonRepresentation<AppDirectSubscriptionResponse>(
+				new AppDirectSubscriptionResponse());
 		// return "Hello Worldd";
 	}
 }
