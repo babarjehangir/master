@@ -26,7 +26,7 @@
 		class="com.dexter.labs.HelloWorldResource">
 	</bean>
 	
-	<bean name="/subscription/create/notification/" autowire="byName" scope="prototype"
+	<bean name="/subscription/create/notification" autowire="byName" scope="prototype"
 		class="com.dexter.labs.app.direct.notifications.handlers.rest.SubscriptionResource">
 	</bean>
 
