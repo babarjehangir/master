@@ -52,7 +52,7 @@ public class SubscriptionResource extends ServerResource {
 		Client client = new Client(getContext(), Protocol.HTTPS);
 		ClientResource clientResource = new ClientResource(url);
 		clientResource.setNext(client);
-		// clientResource.setChallengeResponse(challenge);
+		clientResource.setChallengeResponse(challenge);
 
 		Representation res = clientResource.get();
 
