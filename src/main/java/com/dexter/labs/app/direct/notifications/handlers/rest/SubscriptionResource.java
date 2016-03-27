@@ -4,6 +4,10 @@
 package com.dexter.labs.app.direct.notifications.handlers.rest;
 
 import java.io.IOException;
+import java.io.StringReader;
+
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.Unmarshaller;
 
 import org.restlet.Client;
 import org.restlet.data.ChallengeResponse;
@@ -17,8 +21,10 @@ import org.restlet.resource.ClientResource;
 import org.restlet.resource.Get;
 import org.restlet.resource.ServerResource;
 
+import com.dexter.labs.HelloMessage;
 import com.dexter.labs.app.direct.common.IGlobals;
 import com.dexter.labs.communication.AppDirectSubscriptionResponse;
+import com.dexter.labs.communication.EventType;
 
 /**
  * @author Babar Jehangir Khan
@@ -52,8 +58,18 @@ public class SubscriptionResource extends ServerResource {
 
 		System.out.println("RESPONSE:" + res.getText());
 
-		return new JacksonRepresentation<AppDirectSubscriptionResponse>(
-				new AppDirectSubscriptionResponse());
+		JAXBContext context = JAXBContext.newInstance(EventType.class);
+		Unmarshaller unmarshaller = context.createUnmarshaller();
+
+		EventType eventType = (EventType) unmarshaller
+				.unmarshal(new StringReader(res.getText()));
+
+		if (eventType != null) {
+			System.out.println("TYPE OF EVENT: " + eventType);
+		}
+
+		return new JacksonRepresentation<HelloMessage>(new HelloMessage(
+				"Hello World"));
 		// return "Hello Worldd";
 	}
 }
