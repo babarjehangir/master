@@ -6,6 +6,8 @@ package com.dexter.labs.app.direct.notifications.handlers.rest;
 import org.restlet.Client;
 import org.restlet.data.ChallengeResponse;
 import org.restlet.data.ChallengeScheme;
+import org.restlet.data.Form;
+import org.restlet.data.Parameter;
 import org.restlet.data.Protocol;
 import org.restlet.engine.adapter.HttpRequest;
 import org.restlet.ext.jackson.JacksonRepresentation;
@@ -29,6 +31,12 @@ public class SubscriptionResource extends ServerResource {
 
 		String url = getQueryValue("url");
 
+		Form form = getRequest().getResourceRef().getQueryAsForm();
+
+		for (Parameter parameter : form) {
+			System.out
+					.println(parameter.getName() + ":" + parameter.getValue());
+		}
 		System.out.println("TEST URL BY APP DIRECT: " + url);
 
 		/*
