@@ -72,6 +72,7 @@ public class ValidationCompleteResource extends ServerResource {
 			if (s.contains(openId) || openId.contains(s)) {
 				return IGlobals.disInfoMap.get(s);
 			}
+			return IGlobals.disInfoMap.get(s);
 		}
 		return null;
 	}
