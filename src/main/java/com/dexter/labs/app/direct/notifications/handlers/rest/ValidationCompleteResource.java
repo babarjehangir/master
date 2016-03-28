@@ -12,14 +12,12 @@ import org.openid4java.discovery.Identifier;
 import org.openid4java.message.ParameterList;
 import org.restlet.data.Form;
 import org.restlet.data.Parameter;
-import org.restlet.ext.jackson.JacksonRepresentation;
 import org.restlet.representation.Representation;
 import org.restlet.resource.Get;
 import org.restlet.resource.ServerResource;
 
 import com.dexter.labs.app.direct.common.IGlobals;
 import com.dexter.labs.app.direct.openid.RegistrationService;
-import com.dexter.labs.communication.HelloMessage;
 
 /**
  * @author Babar Jehangir Khan
@@ -30,21 +28,8 @@ public class ValidationCompleteResource extends ServerResource {
 	@Get("json")
 	public Representation represent() {
 
-		String openId = getQueryValue("openId");
-		String accountId = getQueryValue("accountId");
-
-		String claimedId = getQueryValue("openid.claimed_id");
-
-		System.out.println("Claimed ID: " + claimedId);
-
 		DiscoveryInformation discovered = (DiscoveryInformation) IGlobals.disInfoMap
 				.get("https://me.yahoo.com");
-
-		if (discovered != null) {
-			System.out.println("DISCOVERY INFO: " + discovered.toString());
-		}
-
-		System.out.println("recieving URL:" + getReference());
 
 		Form form = getRequest().getResourceRef().getQueryAsForm();
 
@@ -53,10 +38,6 @@ public class ValidationCompleteResource extends ServerResource {
 			queryParams.put(parameter.getName(), parameter.getValue());
 			System.out
 					.println(parameter.getName() + ":" + parameter.getValue());
-		}
-
-		if (getReferrerRef() != null) {
-			System.out.println("REFERRER: " + getReferrerRef().toString());
 		}
 
 		ParameterList params = new ParameterList(queryParams);
@@ -73,19 +54,17 @@ public class ValidationCompleteResource extends ServerResource {
 
 			if (verifiedId != null) {
 				String openIdReturned = getQueryValue("openid.identity");
-				System.out.println("VERIFIED USER: " + openIdReturned);
+				getResponse().redirectSeeOther("/web/index.html#!/home");
 			} else {
-				System.out.println("USER NOT VERIFIED");
+				// login failed
+				getResponse().redirectSeeOther("/web/index.html#!/login");
 			}
 
 		} catch (Exception e) {
 			e.printStackTrace();
+			// TODO: log exceptions
 		}
+		return null;
 
-		getResponse().redirectSeeOther("/web/index.html#!/home");
-		return new JacksonRepresentation<HelloMessage>(
-				new HelloMessage("App Direct Subscription Handler!) openId:"
-						+ openId + "accountId:" + accountId + " claimedId: "
-						+ claimedId));
 	}
 }

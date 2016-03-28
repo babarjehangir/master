@@ -25,7 +25,7 @@ public class SubscriptionResource extends AbstractSubscriptionResource {
 
 	private IDao dao;
 
-	@Get("json")
+	@Get
 	public Representation represent() throws IOException, JAXBException {
 
 		String url = getQueryValue(IGlobals.EVENT_URL);
@@ -35,6 +35,7 @@ public class SubscriptionResource extends AbstractSubscriptionResource {
 			return badRequest();
 		}
 
+		// Extract Event by performing a GET with OAuth 2.0
 		EventType eventType = extractEventType(url);
 
 		UserType user = dao.getUser(eventType.getCreator());

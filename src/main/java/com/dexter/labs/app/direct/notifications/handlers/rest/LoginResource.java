@@ -53,6 +53,7 @@ public class LoginResource extends ServerResource {
 						.getDestinationUrl(true)));
 	}
 
+	@SuppressWarnings("deprecation")
 	private String getOpenIdUrl() {
 		return URLDecoder.decode(this.getAttribute(IGlobals.OPEN_ID_URL));
 	}
