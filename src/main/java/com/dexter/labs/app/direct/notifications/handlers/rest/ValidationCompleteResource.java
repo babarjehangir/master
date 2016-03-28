@@ -28,8 +28,7 @@ public class ValidationCompleteResource extends ServerResource {
 	@Get("json")
 	public Representation represent() {
 
-		DiscoveryInformation discovered = (DiscoveryInformation) IGlobals.disInfoMap
-				.get("https://me.yahoo.com");
+		DiscoveryInformation discovered = getDiscoveryInformation(getQueryValue("openid.identity"));
 
 		Form form = getRequest().getResourceRef().getQueryAsForm();
 
@@ -53,7 +52,7 @@ public class ValidationCompleteResource extends ServerResource {
 			}
 
 			if (verifiedId != null) {
-				String openIdReturned = getQueryValue("openid.identity");
+				// String openIdReturned = getQueryValue("openid.identity");
 				getResponse().redirectSeeOther("/web/index.html#!/home");
 			} else {
 				// login failed
@@ -66,5 +65,14 @@ public class ValidationCompleteResource extends ServerResource {
 		}
 		return null;
 
+	}
+
+	private DiscoveryInformation getDiscoveryInformation(String openId) {
+		for (String s : IGlobals.disInfoMap.keySet()) {
+			if (s.contains(openId) || openId.contains(s)) {
+				return IGlobals.disInfoMap.get(s);
+			}
+		}
+		return null;
 	}
 }

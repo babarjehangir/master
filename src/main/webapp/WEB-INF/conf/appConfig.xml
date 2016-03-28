@@ -30,10 +30,25 @@
 		class="com.dexter.labs.HelloWorldResource">
 	</bean>
 	
-	<bean name="/subscription/create/notification" autowire="byName" scope="prototype"
+		<bean name="/subscription/create/notification" autowire="byName" scope="prototype"
 		class="com.dexter.labs.app.direct.notifications.handlers.rest.SubscriptionResource">
+			<property name="dao" ref="commonDAO"/>
+		</bean>
+	
+		<bean name="/subscription/status/notification" autowire="byName" scope="prototype"
+			class="com.dexter.labs.app.direct.notifications.handlers.rest.SubscripitonStatusResource">
+			<property name="dao" ref="commonDAO"/>
+		</bean>
+	
+		<bean name="/subscription/cancel/notification" autowire="byName" scope="prototype"
+		class="com.dexter.labs.app.direct.notifications.handlers.rest.SubscriptionCancelResource">
+			<property name="dao" ref="commonDAO"/>
+		</bean>
+	
+		<bean name="/subscription/change/notification" autowire="byName" scope="prototype"
+		class="com.dexter.labs.app.direct.notifications.handlers.rest.SubscriptionChangeResource">
 		<property name="dao" ref="commonDAO"/>
-	</bean>
+		</bean>
 
 	<bean name="/login/openid/{openid_url}" autowire="byName" scope="prototype"
 		class="com.dexter.labs.app.direct.notifications.handlers.rest.LoginResource">
